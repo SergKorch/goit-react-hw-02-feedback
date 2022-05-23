@@ -2,25 +2,45 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import s from './profile.module.css';
-import {Controls} from './Controls/Controls'
+import { Controls } from './Controls/Controls';
 import { Statistics } from './Statistics/Statistics';
 
 export class Profile extends Component {
-  state = {
+  static defaultProps = {
     good: 0,
     neutral: 0,
     bad: 0,
+    total:0,
+    percentage:0,
   };
+  state = {
+    valueGood: this.props.good,
+    valueNeutral: this.props.neutral,
+    valueBad: this.props.bad,
+    valueTotal: this.props.total,
+    valuePercentage: this.props.percentage,
+  };
+
   increaseNumber = () => {
-    console.log('plus');
+    this.setState(prevState => ({
+      valueGood: prevState.valueGood + 1,
+      valueNeutral: prevState.valueNeutral+1,
+      valueBad: prevState.valueBad+1,
+    }));
+    this.countTotalFeedback()
+    this.countPositiveFeedbackPercentage() 
   };
 
   countTotalFeedback = () => {
-    const total = 0;
+  this.setState(prevState => ({
+    valueTotal : prevState.valueGood+prevState.valueNeutral+prevState.valueBad,
+  }));
+
   };
   countPositiveFeedbackPercentage = () => {
-    const percentage = 0;
-  };
+    this.setState(prevState => ({
+      valuePercentage: Math.round((prevState.valueGood+prevState.valueNeutral)/(prevState.valueGood+prevState.valueNeutral+prevState.valueBad)*100),
+    }))}
 
   render() {
     return (
@@ -28,11 +48,17 @@ export class Profile extends Component {
         <div className={s.feedback__title}>
           <p>Please leave feedback</p>
         </div>
-        <Controls increaseNumber={this.increaseNumber}/>
+        <Controls increaseNumber={this.increaseNumber} />
         <div className={s.feedback__title}>
           <p>Statistics</p>
         </div>
-        <Statistics good={this.state.good} neutral={this.state.neutral} bad={this.state.bad} total={0} positivePercentage={0}/>
+        <Statistics
+          good={this.state.valueGood}
+          neutral={this.state.valueNeutral}
+          bad={this.state.valueBad}
+          total={this.state.valueTotal}
+          positivePercentage={this.state.valuePercentage}
+        />
       </div>
     );
   }
