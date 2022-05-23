@@ -1,0 +1,30 @@
+.transactionHistorys {
+  display: block;
+  margin: 0;
+  padding: 0;
+  font-size: 15px;
+  border: 0.5px solid black;
+}
+.transactionHistorys thead {
+  display: block;
+  background-color: grey;
+  width: 460px;
+  color: white;
+}
+th,
+td {
+  display: inline-flex;
+  width: 150px;
+  height: 30px;
+  padding: 0;
+  margin: 0;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+th {
+  border: 1px solid white;
+}
+td {
+  border: 1px solid black;
+}
