@@ -1,14 +1,15 @@
 import React from 'react';
-import s from '../profile.module.css';
+import s from '../feedback.module.css';
 
-export const Controls = ({ increaseNumber }) => {
+export const FeedbackOptions = ({ onLeaveFeedback }) => {
   return (
     <ul className={s.feedback__section}>
       <li>
         <button
           className={s.feedback__button}
           type="button"
-          onClick={increaseNumber}
+          name='good'
+          onClick={onLeaveFeedback}
         >
           Good
         </button>
@@ -17,7 +18,8 @@ export const Controls = ({ increaseNumber }) => {
         <button
           className={s.feedback__button}
           type="button"
-          onClick={increaseNumber}
+          name='neutral'
+          onClick={onLeaveFeedback}
         >
           Neutral
         </button>
@@ -26,7 +28,8 @@ export const Controls = ({ increaseNumber }) => {
         <button
           className={s.feedback__button}
           type="button"
-          onClick={increaseNumber}
+          name='bad'
+          onClick={onLeaveFeedback}
         >
           Bad
         </button>
