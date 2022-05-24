@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import s from './feedback.module.css';
 import { FeedbackOptions } from './FeedbackOptions/FeedbackOptions';
 import { Statistics } from './Statistics/Statistics';
+import { Section } from './Section/Section';
 
 export class App extends Component {
   state = {
@@ -32,24 +33,22 @@ export class App extends Component {
   render() {
     const { good, neutral, bad } = this.state;
     const total = this.countTotalFeedback();
-    let percentage = this.countPositiveFeedbackPercentage()
-  
+    let percentage = this.countPositiveFeedbackPercentage();
+
     return (
       <div className={s.feedback}>
-        <div className={s.feedback__title}>
-          <p>Please leave feedback</p>
-        </div>
-        <FeedbackOptions options={0} onLeaveFeedback={this.onLeaveFeedback}/>
-        <div className={s.feedback__title}>
-          <p>Statistics</p>
-        </div>
-        <Statistics
-          good={good}
-          neutral={neutral}
-          bad={bad}
-          total={total}
-          positivePercentage={percentage}
-        />
+        <Section title="Please leave feedback">
+          <FeedbackOptions options={0} onLeaveFeedback={this.onLeaveFeedback} />
+        </Section>
+        <Section title="Statistics">
+          <Statistics
+            good={good}
+            neutral={neutral}
+            bad={bad}
+            total={total}
+            positivePercentage={percentage}
+          />
+        </Section>
       </div>
     );
   }
