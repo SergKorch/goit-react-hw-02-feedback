@@ -1,4 +1,3 @@
-// import PropTypes from 'prop-types';
 import React from 'react';
 import PropTypes from 'prop-types';
 import s from '../Notification/notification.module.css';
@@ -17,7 +16,7 @@ const Section = ({ title, children }) => {
 };
 
 Section.propTypes = {
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   children: PropTypes.object.isRequired,
 };
 
